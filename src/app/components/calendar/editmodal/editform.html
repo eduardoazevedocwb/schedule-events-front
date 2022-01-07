@@ -1,0 +1,150 @@
+<!-- Bootstrap template -->
+<link href="../../../bootstrap-template-docs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="../../../bootstrap-template-docs/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+<div class="row">
+  <!-- Box 01 -->
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-12">
+        <!--error alert-->
+        <div class="alert alert-danger" role="alert" *ngIf='getError()'>
+          <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:15px;" width="20" height="20" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+          {{error}}
+        </div>
+        <!--title-->
+        <div class="row no-gutters align-items-center">
+          <div class="col-lg-12 margin-bt">          
+            <input type="text" class="form-control form-control-sm title" placeholder="Nome do agendamento" aria-label="Title" [(ngModel)] = "scheduling.Title">
+          </div>
+        </div>              
+        <div class="row no-gutters allday">
+          <!--all day--> 
+          <div class="col-lg-6">          
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked [(ngModel)] = "scheduling.AllDay">
+              <label class="form-check-label" for="flexSwitchCheckChecked" style="margin-left: 15px; vertical-align: middle;">Evento dia inteiro</label>
+            </div>
+          </div>
+          <!--other responsable--> 
+          <div class="col-lg-6">          
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked [(ngModel)] = "scheduling.SameUserResponsable">
+              <label class="form-check-label" for="flexSwitchCheckChecked" style="margin-left: 15px; vertical-align: middle;">{{userName}} é o responsável</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <!--department-->
+        <select class="form-select form-select-sm mb-2" aria-label="Default select example" [(ngModel)] = "scheduling.Department">
+          <option value="Departamento">Departamento</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Esportivo">Esportivo</option>
+          <option value="Eventos externos">Eventos externos</option>
+        </select>
+        <!--place-->
+        <select class="form-select form-select-sm mb-2" aria-label="Default select example" [(ngModel)] = "scheduling.Place">
+          <option value="Sede">Sede</option>
+          <option value="SBSA">SBSA</option>
+          <option value="Concordia">Concordia</option>
+          <option value="SLS">SLS</option>
+        </select>
+        <!--space-->
+        <select class="form-select form-select-sm mb-3" aria-label="Default select example" [(ngModel)] = "scheduling.Space">
+          <option value="Local">Local</option>
+          <option value="Salão principal">Salão principal</option>
+          <option value="Salão 02">Salão 02</option>
+          <option value="Salão superior">Salão superior</option>
+          <option value="Sala de aula 01">Sala de aula 01</option>
+          <option value="Sala de artes">Sala de artes</option>
+          <option value="Sala de musica">Sala de musica</option>
+        </select>
+      </div>
+      <div class="col-lg-6">
+        <!--responsable-->
+        <input type="text" class="form-control  form-control-sm margin-bt" placeholder="Responsável" aria-label="Responsable" [(ngModel)] = "scheduling.Responsable" [disabled]="SameUserResponsable()">
+        <input type="text" class="form-control  form-control-sm margin-bt" placeholder="Contato" aria-label="Contact" [(ngModel)] = "scheduling.ResponsableContact" [disabled]="SameUserResponsable()">
+        <input type="email" class="form-control  form-control-sm margin-bt" id="exampleFormControlInput1" placeholder="E-mail" [(ngModel)] = "scheduling.ResponsableEmail" [disabled]="SameUserResponsable()">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <!--date-->
+        <div class="row no-gutters align-items-center">
+          <div class="col-lg-12 margin-bt">   
+            <mat-form-field appearance="fill" class="date-component">
+              <mat-label>Data do agendamento</mat-label>
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start date" [(ngModel)] = "scheduling.InitialDate">
+                <input matEndDate formControlName="end" placeholder="End date" [(ngModel)] = "scheduling.FinalDate">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Data inicial inválida</mat-error>
+              <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Data final inválida</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--hour-->
+        <div class="row no-gutters align-items-center" *ngIf="!scheduling.AllDay">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-5 margin-bt">  
+            <ngb-timepicker [(ngModel)] = "scheduling.InitialHour"></ngb-timepicker>                 
+          </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-5 margin-bt">  
+              <ngb-timepicker [(ngModel)] = "scheduling.FinalHour"></ngb-timepicker>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <!--colors-->
+        <div class="row no-gutters align-items-center color-row-padding">
+          <div class="col-lg-3 margin-bt color-text">  
+            
+            <label for="exampleColorInput" class="form-label" >Reserva</label>
+          </div>
+          <div class="col-lg-3 margin-bt">  
+            <input type="color" class="form-control-color" style="border: none;" id="exampleColorInput" value="#563d7c" title="Choose your color" [(ngModel)] = "scheduling.BackgroundColor"> 
+          </div>
+          <div class="col-lg-3 margin-bt color-text">  
+            <label for="exampleColorInput" class="form-label" >Texto</label>
+          </div>
+          <div class="col-lg-3 margin-bt">  
+            <input type="color" class="form-control-color" style="border: none;" id="exampleColorInput" value="#563d7c" title="Choose your color" [(ngModel)] = "scheduling.TextColor">                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--btn-->
+<div class="row">
+  <div class="col-lg-6">
+    <button mat-button mat-dialog-close type="button" class="btn btn-dark btn-sm btn-margin" style="width: 100%;">Cancelar</button>
+  </div>
+  <div class="col-lg-6">
+    <button type="button" class="btn btn-info btn-sm btn-margin" style="width: 100%;" (click)="save()" >Salvar</button>    
+  </div>
+</div>
+
+
+
+
+<!-- Bootstrap Template-->
+<script src="../../../bootstrap-template-docs/vendor/jquery/jquery.min.js"></script>
+<script src="../../../bootstrap-template-docs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../bootstrap-template-docs/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../../bootstrap-template-docs/js/sb-admin-2.min.js"></script>
+<script src="../../../bootstrap-template-docs/vendor/chart.js/Chart.min.js"></script>
+<script src="../../../bootstrap-template-docs/js/demo/chart-area-demo.js"></script>
+<script src="../../../bootstrap-template-docs/js/demo/chart-pie-demo.js"></script>
+
+

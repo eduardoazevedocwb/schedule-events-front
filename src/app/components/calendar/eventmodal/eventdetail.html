@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<div class="row large">
+  <div class="col">
+    <ngb-alert [dismissible]="false" class="margin-bottom">
+      <strong>Título: </strong> {{eventdetailDTO.Title}}<br>
+    </ngb-alert>
+    <ngb-alert [dismissible]="false" class="margin-bottom">
+      <strong>Departamento: </strong> {{eventdetailDTO.Department}}<br>
+      <strong>Sede: </strong> {{eventdetailDTO.Place}}<br>
+      <strong>Local: </strong> {{eventdetailDTO.Space}}<br>
+      <strong>Data Início: </strong> {{eventdetailDTO.InitialDate}}<br>
+      <strong>Data Fim: </strong> {{eventdetailDTO.FinalDate}}<br>
+      <strong>Participantes previstos: </strong> {{eventdetailDTO.NumberParticipations}}<br>
+      <strong>Observações: </strong> {{eventdetailDTO.Observations}}
+    </ngb-alert>
+    <ngb-alert [dismissible]="false" class="margin-bottom">
+      <strong>Responsável: </strong> {{eventdetailDTO.Responsable}}<br>
+      <strong>Contato: </strong> {{eventdetailDTO.Contact}}<br>
+      <strong>E-mail: </strong> {{eventdetailDTO.Email}}<br>
+    </ngb-alert>
+    
+    <div class="row" *ngIf="isThisUserOwner()">
+      <div class="col-lg-6">
+        <button mat-button mat-dialog-close type="button" class="btn btn-dark btn-sm btn-margin" style="width: 100%;">Fechar</button>
+      </div>
+      <div class="col-lg-6">
+        <app-editmodal idScheduling={{scheduling.Id}}></app-editmodal>
+      </div>
+    </div>
+    <div class="row" *ngIf="!isThisUserOwner()">
+      <div class="col-lg-12">
+        <button mat-button mat-dialog-close type="button" class="btn btn-dark btn-sm btn-margin" style="width: 100%;">Fechar</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+html,
+body,
+body > * { /* the app-root */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.button-top{
+  margin-left: 7px;
+  height: 98%;
+  background-color: #13404b;
+  color: #97e2f3;
+  border-color: #408697;
+}

@@ -1,0 +1,72 @@
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Department</th>
+    <th scope="col">Responsable</th>
+    <th scope="col">InitialDate</th>
+    <th scope="col">FinalDate</th>
+    <th scope="col">Contact</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of listScheduling">
+    <th scope="row">{{ item.id }}</th>
+    <td>{{ item.Title }}</td>
+    <td>{{ item.Department}}</td>
+    <td>{{ item.Responsable }}</td>
+    <td>{{ item.InitialDate }}</td>
+    <td>{{ item.FinalDate }}</td>
+    <td>{{ item.Contact }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+  </ngb-pagination>
+
+  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+    <option [ngValue]="2">2 itens por página</option>
+    <option [ngValue]="4">4 itens por página</option>
+    <option [ngValue]="6">6 itens por página</option>
+  </select>
+</div>
+
+<!-- 
+<div class="card">
+    <div class="row">
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.Title}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.Department}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.Responsable}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.InitialDate}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.FinalDate}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item nowrap" *ngFor="let item of listScheduling">{{item.Contact}}</li>
+            </ul>
+        </div>
+    </div>
+</div> -->

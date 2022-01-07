@@ -1,0 +1,32 @@
+<!-- Bootstrap template -->
+<link href="../../bootstrap-template-docs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="../../bootstrap-template-docs/css/sb-admin-2.min.css" rel="stylesheet">
+
+<div class="row no-gutters align-items-center">
+    <div class="col-lg-12">
+        <h5 class="font">Você deseja realmente deslogar a conta abaixo?</h5>
+    </div>
+</div>
+<!--email or phone-->
+<div class="row no-gutters align-items-center">
+  <div class="col-lg-12 margin-bt">          
+    <input type="text" class="form-control form-control-sm login" disabled placeholder="" aria-label="Login" [(ngModel)] = "user.Name">
+  </div>
+</div>              
+<!--btn-->
+<div class="row">
+  <div class="col-lg-6">
+    <button mat-button mat-dialog-close type="button" class="btn btn-dark btn-sm btn-margin" style="width: 100%;">Cancelar</button>
+  </div>
+  <div class="col-lg-6">
+    <button type="button" class="btn btn-info btn-sm btn-margin" style="width: 100%;" (click)="logoutClick()" >Deslogar</button>    
+  </div>
+</div>
+
+<!-- Bootstrap Template-->
+<script src="../../bootstrap-template-docs/vendor/jquery/jquery.min.js"></script>
+<script src="../../bootstrap-template-docs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../bootstrap-template-docs/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../bootstrap-template-docs/js/sb-admin-2.min.js"></script>
+

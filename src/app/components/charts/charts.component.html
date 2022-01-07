@@ -1,0 +1,99 @@
+<!-- Bootstrap template -->
+<link href="../../bootstrap-template-docs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="../../bootstrap-template-docs/css/sb-admin-2.min.css" rel="stylesheet">
+
+<div class="row">
+    <div class="col-lg-7 mb-4">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Participações previstas (mensal)</h6>
+            </div>
+            <div class="card-body">
+                <div id="bar-chart">
+                    <apx-chart
+                      [series]="barOptions.series"
+                      [chart]="barOptions.chart"
+                      [xaxis]="barOptions.xaxis"
+                      [dataLabels]="barOptions.dataLabels"
+                      [grid]="barOptions.grid"
+                      [stroke]="barOptions.stroke"
+                      [title]="barOptions.title"
+                    ></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 mb-4">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Eventos maior público previsto</h6>
+            </div>
+            <div class="card-body">
+                <div id="donut-chart">
+                    <apx-chart
+                      [series]="donutOptions.series"
+                      [chart]="donutOptions.chart"
+                      [labels]="donutOptions.labels"
+                      [fill]="donutOptions.fill"
+                      [dataLabels]="donutOptions.dataLabels"
+                      [responsive]="donutOptions.responsive"
+                    ></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-5 mb-4">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Espaços mais utilizados (considerando dias de uso)</h6>
+            </div>
+            <div class="card-body">
+                <div id="pie-chart">
+                    <apx-chart
+                        [series]="pieOptions.series"
+                        [chart]="pieOptions.chart"
+                        [labels]="pieOptions.labels"
+                        [responsive]="pieOptions.responsive"
+                    ></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 mb-4">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Uso espaços por mês (quantidade de dias)</h6>
+            </div>
+            <div class="card-body">
+                <div id="line-chart">
+                    <apx-chart
+                      [series]="lineOptions.series"
+                      [chart]="lineOptions.chart"
+                      [xaxis]="lineOptions.xaxis"
+                      [dataLabels]="lineOptions.dataLabels"
+                      [grid]="lineOptions.grid"
+                      [stroke]="lineOptions.stroke"
+                      [title]="lineOptions.title"
+                    ></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap Template-->
+<script src="../../bootstrap-template-docs/vendor/jquery/jquery.min.js"></script>
+<script src="../../bootstrap-template-docs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../bootstrap-template-docs/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../bootstrap-template-docs/js/sb-admin-2.min.js"></script>
+<script src="../../bootstrap-template-docs/vendor/chart.js/Chart.min.js"></script>
+<script src="../../bootstrap-template-docs/js/demo/chart-area-demo.js"></script>
+<script src="../../bootstrap-template-docs/js/demo/chart-pie-demo.js"></script>
